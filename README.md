@@ -97,7 +97,7 @@
 
 ## ✅ Example Endpoints
 
-- `POST /api/auth/signup` → Register lawyer  
-- `POST /api/auth/signin` → Login  
-- `POST /api/case` → Create case
+- `POST /api/auth/register` → Register lawyer  
+- `POST /api/v1/auth/login` → Login  
+- `POST /api/v1/cases ` → Create case
 
