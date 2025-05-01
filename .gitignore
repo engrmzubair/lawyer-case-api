@@ -27,7 +27,4 @@ npm-debug.log*
 coverage/
 
 # TypeScript Declaration files
-*.d.ts
-
-# Optional npm cache directory
 .npm/
