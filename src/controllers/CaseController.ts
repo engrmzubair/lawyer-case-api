@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 import { CaseService } from '../services/CaseService';
 import { asyncHandler } from '../utils/asyncHandler';
 import { SingleCaseResponse } from 'src/types/responses';
+import { CustomRequest } from 'src/types/common';
 
 export class CaseController {
   private caseService: CaseService;
@@ -12,8 +13,10 @@ export class CaseController {
     this.caseService = new CaseService();
   }
 
-  public createCase = asyncHandler(async (req: Request, res: Response) => {
-    const createdCase = await this.caseService.createCase(req.body);
+  public createCase = asyncHandler(async (req: CustomRequest, res: Response) => {
+    
+    const body = { ...req.body, userId: req.user!.userId};
+    const createdCase = await this.caseService.createCase(body);
 
     const response: SingleCaseResponse = {
       status: 'success',

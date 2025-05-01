@@ -1,3 +1,5 @@
+import { Request } from 'express';
+
 export interface SuccessResponse<T> {
     status: 'success';
     message: string;
@@ -11,3 +13,11 @@ export interface SuccessResponse<T> {
     details?: any;
   }
   
+  interface User {
+    userId: string;
+    email: string;
+  }
+  
+  export interface CustomRequest extends Request {
+    user?: User;
+  }

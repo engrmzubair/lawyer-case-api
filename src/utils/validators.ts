@@ -27,7 +27,6 @@ export const createCaseSchema = z.object({
     ['WON', 'LOST', 'SETTLED', 'DISMISSED'].includes(val), {
     message: 'Invalid case outcome',
   }),
-  userId: z.number().int('User ID must be an integer'),
 });
 
 export const updateCaseSchema = createCaseSchema.partial(); 
