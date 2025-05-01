@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { z } from 'zod';
+import ms from 'ms';
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const envSchema = z.object({
   DB_PASSWORD: z.string(),
   DB_NAME: z.string(),
   JWT_SECRET: z.string(),
+  JWT_EXPIRATION: z.string().default('1h'),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
@@ -26,4 +28,5 @@ export const env = {
   dbPassword: parsedEnv.data.DB_PASSWORD,
   dbName: parsedEnv.data.DB_NAME,
   jwtSecret: parsedEnv.data.JWT_SECRET,
+  jwtExpiration: parsedEnv.data.JWT_EXPIRATION as ms.StringValue,
 };
