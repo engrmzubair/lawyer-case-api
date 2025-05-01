@@ -8,7 +8,7 @@ class Database {
     this.prisma = new PrismaClient({
       datasources: {
         db: {
-          url: `mysql://${env.dbUser}:${env.dbPassword}@${env.dbHost}:3306/${env.dbName}`,
+          url: env.dbUrl,
         },
       },
     });

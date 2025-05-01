@@ -32,10 +32,7 @@
 3. **Configure environment variables** (`.env`)
    ```
    PORT=5000
-   DB_HOST=localhost
-   DB_USER=root
-   DB_PASSWORD=yourpassword
-   DB_NAME=lawyer_case_db
+   DATABASE_URL=your_database_url
    JWT_SECRET=your_jwt_secret
    JWT_EXPIRATION=1h 
    BCRYPT_SALT_ROUNDS=your_salt_round_number

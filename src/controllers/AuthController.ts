@@ -11,6 +11,7 @@ export class AuthController {
   }
 
   public signup = asyncHandler(async (req: Request, res: Response) => {
+    console.log("body => ", req.body);
     const result = await this.authService.signup(req.body);
 
     const response: AuthSuccessResponse = {

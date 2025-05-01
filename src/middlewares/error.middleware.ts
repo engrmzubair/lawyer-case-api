@@ -1,18 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
-import { AppError } from 'src/utils/error';
 
 export const errorHandler = (
-  err: AppError,
+  err: any,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { statusCode, message, isOperational, details } = err;
+  console.error("error => ", err);
+
+  // fallback values
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Something went wrong';
 
   res.status(statusCode).json({
     status: 'error',
     message,
-    ...(details && { details }),
-    ...(isOperational && { errorCode: err.errorType }),
+    ...(err.details && { details: err.details }),
+    ...(err.isOperational && { errorCode: err.errorType }),
   });
 };

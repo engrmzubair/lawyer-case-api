@@ -7,11 +7,7 @@ import { createUserSchema, createCaseSchema, loginSchema, updateCaseSchema } fro
 const validateSchema = <T>(schema: ZodSchema<T>) => 
   (req: Request, res: Response, next: NextFunction): void => {
     try {
-      schema.parse({
-        body: req.body,
-        query: req.query,
-        params: req.params,
-      });
+      schema.parse(req.body);
       next();
     } catch (error: any) {
       next(new AppError(ErrorType.BadRequest, 'Validation failed', error.errors));

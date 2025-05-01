@@ -6,10 +6,7 @@ dotenv.config();
 
 const envSchema = z.object({
   PORT:  z.coerce.number().default(5000),
-  DB_HOST: z.string(),
-  DB_USER: z.string(),
-  DB_PASSWORD: z.string(),
-  DB_NAME: z.string(),
+  DATABASE_URL: z.string(),
   JWT_SECRET: z.string(),
   JWT_EXPIRATION: z.string().default('1h'),
   BCRYPT_SALT_ROUNDS: z.coerce.number().default(10)
@@ -24,10 +21,7 @@ if (!parsedEnv.success) {
 
 export const env = {
   port: parsedEnv.data.PORT,
-  dbHost: parsedEnv.data.DB_HOST,
-  dbUser: parsedEnv.data.DB_USER,
-  dbPassword: parsedEnv.data.DB_PASSWORD,
-  dbName: parsedEnv.data.DB_NAME,
+  dbUrl: parsedEnv.data.DATABASE_URL,
   jwtSecret: parsedEnv.data.JWT_SECRET,
   jwtExpiration: parsedEnv.data.JWT_EXPIRATION as ms.StringValue,
   bcryptSaltRounds: parsedEnv.data.BCRYPT_SALT_ROUNDS
