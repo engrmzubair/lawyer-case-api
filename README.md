@@ -37,6 +37,9 @@
    DB_PASSWORD=yourpassword
    DB_NAME=lawyer_case_db
    JWT_SECRET=your_jwt_secret
+   JWT_EXPIRATION=1h 
+   BCRYPT_SALT_ROUNDS=your_salt_round_number
+
    ```
 
 4. **Run the project**
@@ -60,16 +63,7 @@
 │   └── index.ts
 ├── services/
 │   ├── AuthService.ts
-│   ├── CaseService.ts
-│   └── index.ts
-├── repositories/
-│   ├── UserRepository.ts
-│   ├── CaseRepository.ts
-│   └── index.ts
-├── models/
-│   ├── UserModel.ts
-│   ├── CaseModel.ts
-│   └── index.ts
+│   └── CaseService.ts
 ├── routes/
 │   ├── auth.routes.ts
 │   ├── case.routes.ts
@@ -77,21 +71,21 @@
 ├── middlewares/
 │   ├── auth.middleware.ts
 │   ├── error.middleware.ts
-│   ├── validate.middleware.ts
-│   ├── logger.middleware.ts
-│   └── index.ts
+│   └── validate.middleware.ts
 ├── utils/
-│   ├── constants.ts
-│   ├── helpers.ts
-│   ├── validators.ts
-│   └── index.ts
+│   ├── asyncHandler.ts
+│   ├── error.ts
+│   ├── jwt.ts
+│   └── validators.ts
 ├── types/
 │   ├── auth.d.ts
 │   ├── case.d.ts
-│   └── index.ts
+│   ├── common.d.ts
+│   └── responses.d.ts
 ├── app.ts
 ├── server.ts
 └── index.ts
+
 ```
 
 ---
