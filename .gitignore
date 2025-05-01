@@ -1,0 +1,33 @@
+# Node.js
+node_modules/
+
+# TypeScript
+*.tsbuildinfo
+dist/
+build/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Environment variables
+.env
+
+# npm packages
+npm-debug.log*
+
+# TypeScript coverage
+coverage/
+
+# TypeScript Declaration files
+*.d.ts
+
+# Optional npm cache directory
+.npm/

@@ -1,0 +1,49 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+enum CaseStatus {
+  OPEN
+  CLOSED
+  PENDING
+  IN_PROGRESS
+}
+
+enum CaseOutcome {
+  WON
+  LOST
+  SETTLED
+  DISMISSED
+}
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  cases     Case[]   @relation("UserCases")
+}
+
+model Case {
+  id            Int          @id @default(autoincrement())
+  caseNumber    String       @unique
+  title         String
+  description   String
+  status        CaseStatus  
+  clientName    String
+  startDate     DateTime
+  endDate       DateTime?
+  outcome       CaseOutcome  
+  
+  userId        Int
+  user          User         @relation("UserCases", fields: [userId], references: [id])
+}
