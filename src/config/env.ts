@@ -5,13 +5,14 @@ import ms from 'ms';
 dotenv.config();
 
 const envSchema = z.object({
-  PORT: z.string().transform((val) => parseInt(val, 10)),
+  PORT:  z.coerce.number().default(5000),
   DB_HOST: z.string(),
   DB_USER: z.string(),
   DB_PASSWORD: z.string(),
   DB_NAME: z.string(),
   JWT_SECRET: z.string(),
   JWT_EXPIRATION: z.string().default('1h'),
+  BCRYPT_SALT_ROUNDS: z.coerce.number().default(10)
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
@@ -29,4 +30,5 @@ export const env = {
   dbName: parsedEnv.data.DB_NAME,
   jwtSecret: parsedEnv.data.JWT_SECRET,
   jwtExpiration: parsedEnv.data.JWT_EXPIRATION as ms.StringValue,
+  bcryptSaltRounds: parsedEnv.data.BCRYPT_SALT_ROUNDS
 };

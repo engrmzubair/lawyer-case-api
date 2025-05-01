@@ -1,12 +1,11 @@
 // src/middlewares/auth.middleware.ts
 
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import { env } from '../config/env';
+import { JwtUtils } from '../utils/jwt';
 import { AppError, ErrorType } from 'src/utils/error';
 
 export interface AuthenticatedRequest extends Request {
-  user?: { userId: number };
+  user?: { userId: number; email: string };
 }
 
 export const authenticate = (
@@ -22,11 +21,12 @@ export const authenticate = (
 
   const token = authHeader.split(' ')[1];
 
-  try {
-    const decoded = jwt.verify(token, env.jwtSecret) as { userId: number };
-    req.user = { userId: decoded.userId };
-    next();
-  } catch (err) {
+  const decoded = JwtUtils.verify(token);
+
+  if (!decoded) {
     throw new AppError(ErrorType.Unauthorized, 'Invalid or expired token');
   }
+
+  req.user = { userId: decoded.userId, email: decoded.email };
+  next();
 };
